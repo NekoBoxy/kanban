@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+  <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top">
     <div class="container-fluid">
       <RouterLink class="navbar-brand" to="/">扛棒</RouterLink>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -9,15 +9,20 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <RouterLink class="nav-link active" aria-current="page" to="/">Home</RouterLink>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">logout</a>
-          </li>
+          </li> -->
+          <template v-if="route.params.query === 'SUCCESSFUL'">
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">logout</a>
+            </li>
+          </template>
+
+          <template v-else>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">login</a>
+            </li>
+          </template>
 
           <!-- 下拉選單，暫不開 -->
           <!-- <li class="nav-item dropdown">
@@ -45,11 +50,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { RouterLink } from "vue-router";
-import axios from 'axios';
+import { useRoute, RouterLink } from "vue-router";
+// import axios from 'axios';
 
+const route = useRoute();
 
 onMounted(() => {
+
 });
 </script>
 

@@ -1,4 +1,25 @@
-// @import "bootstrap/scss/bootstrap.scss";
-@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+// 變數設定
+// 此支檔案內的變數都是 Bootstrap 內建的，
+// 因為 Bootstrap 每個樣式幾乎都有下 !default，
+// 若沒指定值，就會使用 Bootstrap 的預設值，
+// 故需在引入 Bootstrap 樣式前 import 才能
+// 修改變數值請見已從官方檔中拉出的 _variables_BT5.scss
+@import 'variables';
 
-@import './base.scss';
+// 引入這支時，會引入所有 Bootstrap 官方寫好的樣式(包含 reboot)
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+// @import "~bootstrap/scss/bootstrap";
+
+// 基於 Normalize 的 Bootstrap 官方 css reset，也可以自訂一個並引入
+// 官方有兩種，這是較新的版本
+// @import '../../../node_modules/bootstrap/scss/reboot';
+
+// 基本設定
+@import 'base';
+
+// 可重用函式
+@import "mixin";
+
+// 呼叫函式
+@import "include";
+

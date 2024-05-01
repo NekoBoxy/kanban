@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute, RouterLink } from "vue-router";
 import { axios } from "axios";
 
@@ -30,7 +30,11 @@ const route = useRoute();
 //   }
 // };
 
+const html = document.querySelector('html');
 
+onMounted(() => {
+  console.log("html:", html);
+});
 </script>
 
 <style lang="sass" scoped>
