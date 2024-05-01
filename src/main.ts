@@ -2,10 +2,10 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import * as bootstrap from 'bootstrap'
 
+import './assets/css/main.min.css';
+
 import App from './App.vue'
 import router from './router'
-
-import './assets/main.scss'
 
 const app = createApp(App)
 

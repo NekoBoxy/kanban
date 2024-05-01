@@ -1,10 +1,12 @@
-<script setup lang="ts">
-import { RouterView } from 'vue-router'
-</script>
-
 <template>
+  <CHeader />
   <RouterView />
 </template>
 
-<style scoped>
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
+import CHeader from '@/components/CHeader.vue';
+</script>
+
+<style lang="sass" scoped>
 </style>
