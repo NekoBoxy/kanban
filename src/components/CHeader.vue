@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top">
+  <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top ">
     <div class="container-fluid">
-      <RouterLink class="navbar-brand" to="/">扛棒</RouterLink>
+      <RouterLink class="navbar-brand" to="/">Kanban</RouterLink>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -61,4 +61,9 @@ onMounted(() => {
 </script>
 
 
-<style></style>
+<style scoped lang="scss">
+nav {
+  opacity: .75;
+  backdrop-filter: blur(30px);
+}
+</style>
