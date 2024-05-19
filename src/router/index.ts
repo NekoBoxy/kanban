@@ -21,6 +21,16 @@ const router = createRouter({
           name: 'logout',
           component: () => import('../views/LogoutView.vue'),
         },
+        {
+          path: 'person',
+          name: 'person',
+          component: () => import('../views/PersonView.vue'),
+        },
+        {
+          path: 'kanban',
+          name: 'kanban',
+          component: () => import('../views/KanbanView.vue'),
+        },
       ]
     },
   ]

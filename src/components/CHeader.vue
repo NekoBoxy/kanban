@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top ">
+  <nav class="navbar navbar-expand-sm bg-body-tertiary fixed-top">
     <div class="container-fluid">
       <RouterLink class="navbar-brand" to="/">Kanban</RouterLink>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -8,21 +8,30 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <!-- <li class="nav-item">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center align-items-center"
+          ref="navbarContainer">
+          <li class="nav-item" @click="handleClick" @touchend="handleClick">
             <RouterLink class="nav-link active" aria-current="page" to="/">Home</RouterLink>
-          </li> -->
-          <template v-if="route.params.query === 'SUCCESSFUL'">
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">logout</a>
+          </li>
+          <template v-if="store.person.isActive === true">
+            <li class="nav-item" @click="handleClick" @touchend="handleClick">
+              <RouterLink class="nav-link" to="person">Person</RouterLink>
+            </li>
+
+            <li class="nav-item" @click="handleClick" @touchend="handleClick">
+              <RouterLink class="nav-link" to="kanban">Kanban</RouterLink>
+            </li>
+            <li class="nav-item" @click="handleClick" @touchend="handleClick">
+              <a class="nav-link" href="logout">Logout</a>
             </li>
           </template>
 
           <template v-else>
-            <li class="nav-item">
-              <a class="nav-link" href="/login">login</a>
+            <li class="nav-item" @click="handleClick" @touchend="handleClick">
+              <a class="nav-link" href="login">Login</a>
             </li>
           </template>
+
 
           <!-- 下拉選單，暫不開 -->
           <!-- <li class="nav-item dropdown">
@@ -49,14 +58,27 @@
 </template>
 
 <script setup lang="ts">
+import * as Bootstrap from "bootstrap";
 import { ref, onMounted } from "vue";
-import { useRoute, RouterLink } from "vue-router";
+// import { useRoute, RouterLink } from "vue-router";
+import { usePersonStore } from '../stores/userStatus.ts';
 // import axios from 'axios';
 
-const route = useRoute();
+// const route = useRoute();
+const store = usePersonStore();
+const navbarContainer = ref(null);
+const navbarCollapse = ref(null);
+
+const handleClick = () => {
+  navbarCollapse.value.hide();
+};
 
 onMounted(() => {
+  console.log("store: ", store);
 
+  navbarCollapse.value = new Bootstrap.Collapse(navbarContainer.value, {
+    toggle: false
+  });
 });
 </script>
 
