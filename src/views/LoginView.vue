@@ -34,6 +34,7 @@ onMounted(async () => {
     <template v-if="route.query.code === 'SUCCESSFUL'">
       <div>您已成功登入</div>
       <div>開始盤點你的 Kanban 吧!</div>
+      <RouterLink to="boards">前往 kanban</RouterLink>
       <!-- Login successful. <a href="/auth/logout">Logout</a> -->
     </template>
 

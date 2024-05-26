@@ -19,7 +19,7 @@
             </li>
 
             <li class="nav-item" @click="handleClick" @touchend="handleClick">
-              <RouterLink class="nav-link" to="kanban">Kanban</RouterLink>
+              <RouterLink class="nav-link" to="boards">boards</RouterLink>
             </li>
             <li class="nav-item" @click="handleClick" @touchend="handleClick">
               <a class="nav-link" href="logout">Logout</a>

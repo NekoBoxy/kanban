@@ -10,7 +10,7 @@ const addKanban = async function () {
   try {
     const res = await axios({
       method: "POST",
-      url: "/api/kanban-lists",
+      url: "/api/kanban-boards",
       params: {
         name: userInput.value,
       }
@@ -35,7 +35,7 @@ onMounted(() => {
           <label for="addKanban"></label>
           <input type="text" id="addKanban" v-model="userInput">
           <button type="button" @click="addKanban">
-            新增
+            新增 kanban
           </button>
         </div>
       </div>

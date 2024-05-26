@@ -8,7 +8,7 @@ const router = createRouter({
       component: () => import('../views/IndexView.vue'),
       children: [
         {
-          path: '/',
+          path: '',
           component: () => import("../views/HomeView.vue")
         },
         {
@@ -27,9 +27,9 @@ const router = createRouter({
           component: () => import('../views/PersonView.vue'),
         },
         {
-          path: 'kanban',
-          name: 'kanban',
-          component: () => import('../views/KanbanView.vue'),
+          path: 'boards',
+          name: 'boards',
+          component: () => import('../views/BoardsView.vue'),
         },
       ]
     },

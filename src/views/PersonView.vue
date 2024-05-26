@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { RouterLink } from 'vue-router';
 import axios from 'axios';
 
 const avatar = ref("");
@@ -33,6 +34,7 @@ onMounted(async () => {
         <div class="col-12 mt-3">
           <span>嗨嗨，{{ name }}</span>
           <span class="d-block">開始建立你的 Kanban 吧!</span>
+          <RouterLink to="boards">前往 Kanban</RouterLink>
         </div>
       </div>
     </div>
