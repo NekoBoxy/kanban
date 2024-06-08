@@ -13,23 +13,28 @@ const router = createRouter({
         },
         {
           path: 'login',
-          name: 'login',
+          // name: 'login',
           component: () => import('../views/LoginView.vue'),
         },
         {
           path: 'logout',
-          name: 'logout',
+          // name: 'logout',
           component: () => import('../views/LogoutView.vue'),
         },
         {
           path: 'person',
-          name: 'person',
+          // name: 'person',
           component: () => import('../views/PersonView.vue'),
         },
         {
           path: 'boards',
-          name: 'boards',
+          // name: 'boards',
           component: () => import('../views/BoardsView.vue'),
+        },
+        {
+          path: 'board/:id',
+          // name: 'board/:id',
+          component: () => import('../views/BoardView.vue'),
         },
       ]
     },

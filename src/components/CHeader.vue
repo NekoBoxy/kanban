@@ -10,25 +10,25 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center align-items-center"
           ref="navbarContainer">
-          <li class="nav-item" @click="handleClick" @touchend="handleClick">
-            <RouterLink class="nav-link active" aria-current="page" to="/">Home</RouterLink>
+          <li class="nav-item">
+            <RouterLink class="nav-link" aria-current="page" to="/">Home</RouterLink>
           </li>
           <template v-if="store.person.isActive === true">
-            <li class="nav-item" @click="handleClick" @touchend="handleClick">
-              <RouterLink class="nav-link" to="person">Person</RouterLink>
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/person">Person</RouterLink>
             </li>
 
-            <li class="nav-item" @click="handleClick" @touchend="handleClick">
-              <RouterLink class="nav-link" to="boards">boards</RouterLink>
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/boards">boards</RouterLink>
             </li>
-            <li class="nav-item" @click="handleClick" @touchend="handleClick">
-              <a class="nav-link" href="logout">Logout</a>
+            <li class="nav-item">
+              <a class="nav-link" href="/auth/logout">Logout</a>
             </li>
           </template>
 
           <template v-else>
-            <li class="nav-item" @click="handleClick" @touchend="handleClick">
-              <a class="nav-link" href="login">Login</a>
+            <li class="nav-item">
+              <a class="nav-link" href="/auth">Login</a>
             </li>
           </template>
 
@@ -61,7 +61,8 @@
 import * as Bootstrap from "bootstrap";
 import { ref, onMounted } from "vue";
 // import { useRoute, RouterLink } from "vue-router";
-import { usePersonStore } from '../stores/userStatus.ts';
+import CGoogleLogin from '@/components/CGoogleLogin.vue';
+import { usePersonStore } from '../stores/userStatus';
 // import axios from 'axios';
 
 // const route = useRoute();
@@ -69,16 +70,25 @@ const store = usePersonStore();
 const navbarContainer = ref(null);
 const navbarCollapse = ref(null);
 
-const handleClick = () => {
-  navbarCollapse.value.hide();
+// const handleClick = () => {
+//   navbarCollapse.value.hide();
+// };
+
+
+const handleLogin = function () {
+  console.log("被點了");
+  // const domain = location.origin;
+  // window.location.href(`${domain}/login`);
+  window.location.href = location.origin + '/auth'
+  // window.open(`${domain}/login`);
 };
 
 onMounted(() => {
-  console.log("store: ", store);
+  // console.log("store: ", store);
 
-  navbarCollapse.value = new Bootstrap.Collapse(navbarContainer.value, {
-    toggle: false
-  });
+  // navbarCollapse.value = new Bootstrap.Collapse(navbarContainer.value, {
+  //   toggle: false
+  // });
 });
 </script>
 

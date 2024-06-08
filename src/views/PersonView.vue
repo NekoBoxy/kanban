@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router';
 import axios from 'axios';
 
 const avatar = ref("");
-const name = ref("");
+const userName = ref("");
 
 onMounted(async () => {
   try {
@@ -14,7 +14,7 @@ onMounted(async () => {
     });
     console.log("res: ", res);
     avatar.value = res.data.picture;
-    name.value = res.data.name;
+    userName.value = res.data.name;
   } catch (e) {
     console.log(e);
   }
@@ -29,10 +29,10 @@ onMounted(async () => {
           <img :src="avatar" alt="" srcset="" style="max-width: 100%; aspect-ratio: 100%;">
         </div>
         <div class="col-8 d-flex align-items-center">
-          <span>{{ name }}</span>
+          <span>{{ userName }}</span>
         </div>
         <div class="col-12 mt-3">
-          <span>嗨嗨，{{ name }}</span>
+          <span>嗨嗨，{{ userName }}</span>
           <span class="d-block">開始建立你的 Kanban 吧!</span>
           <RouterLink to="boards">前往 Kanban</RouterLink>
         </div>
