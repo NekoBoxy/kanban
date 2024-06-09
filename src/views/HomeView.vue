@@ -11,9 +11,9 @@
 
           <h2>開始使用！</h2>
 
-          <div class="d-flex">
+          <div class="text-center">
             <a href="/auth">
-              <CGoogleLogin style="margin: 0 auto;" />
+              <CGoogleLogin />
             </a>
 
             <!-- <CGoogleLogin @parent-login="handleLogin" style="margin: 0 auto;" /> -->

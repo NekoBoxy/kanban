@@ -12,31 +12,33 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main>
-    <template v-if="store.person.isActive">
-      <div>您已成功登入</div>
-      <div>開始盤點你的 Kanban 吧!</div>
-      <RouterLink to="boards">前往 kanban</RouterLink>
-    </template>
+  <main class="container position-relative">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-10 mt-5 logout-box">
+        <div class="text-center my-2">
+          <template v-if="store.person.isActive">
+            <p>您已成功登入</p>
+            <RouterLink to="boards">前往 Kanban</RouterLink>
+          </template>
 
-    <template v-else>
-      <div>請登入</div>
-      <a href="/auth">Click to Login</a>
-    </template>
+          <template v-else>
+            <div>請登入</div>
+            <a href="/auth">Click to Login</a>
+          </template>
+
+        </div>
+      </div>
+    </div>
 
   </main>
-
-  <!-- <main>
-    <template v-if="route.query.code === 'SUCCESSFUL'">
-      <div>您已成功登入</div>
-      <div>開始盤點你的 Kanban 吧!</div>
-      <RouterLink to="boards">前往 kanban</RouterLink>
-    </template>
-
-<template v-else>
-      <a href="/auth">Click to Login</a>
-    </template>
-</main> -->
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.logout-box {
+  border: 1px solid antiquewhite;
+  border-radius: 40px;
+  padding: 1rem;
+  background-color: #FFFFFF75;
+  backdrop-filter: blur(2px);
+}
+</style>

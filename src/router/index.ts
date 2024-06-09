@@ -36,6 +36,10 @@ const router = createRouter({
           // name: 'board/:id',
           component: () => import('../views/BoardView.vue'),
         },
+        {
+          path: 'css',
+          component: () => import('../views/PracticeCSS.vue'),
+        },
       ]
     },
   ]

@@ -2,17 +2,20 @@
   <main>
     <div class="container">
       <div class="row">
-        <div class="col-12 mb-2">
-          目前有 {{ boardCount }} 張 Kanbans
+        <div class="col-12 mb-2 d-flex justify-content-around">
+          <span>目前有 {{ boardCount }} 張 Kanbans</span>
+          <CModal :cols="kanbanTitleAdd">
+            新增
+          </CModal>
         </div>
 
-        <div class="col-12 mb-2">
+        <!-- <div class="col-12 mb-2">
           <label for="addKanban"></label>
           <input type="text" id="addKanban" v-model="userInput" style="width: 50%;" />
           <button type="button" @click="addBoards">
             新增 kanban
           </button>
-        </div>
+        </div> -->
 
         <div class="col-12 mb-2">
           扛棒清單
@@ -25,14 +28,14 @@
           </CModal> -->
 
           <!-- ori -->
-          <div v-for="item in boardList" :key="item.id">
+          <div v-for=" item  in  boardList " :key="item.id">
             <RouterLink :to="`/board/${item.id}`">
               {{ item.name }}
             </RouterLink>
             ｜
             <button type="button" @click="editBoard(item.id, item.name)">編輯</button>
             ｜
-            <button type="button" @click="delBoard">刪除</button>
+            <button type="button" @click="delBoard(item.id)">刪除</button>
           </div>
         </div>
       </div>
@@ -55,6 +58,9 @@ import CModal from "@/components/CModal.vue";
 const userInput = ref("");
 const boardList = ref([]);
 const boardCount = ref(0);
+const kanbanTitleAdd = ref({
+  name: "Kanban 名稱：",
+});
 
 // boardList[0]
 // {
@@ -71,7 +77,7 @@ const getBoardsList = async function () {
       method: "get",
       url: "/api/kanban-boards"
     });
-    console.log("res: ", res);
+    // console.log("res: ", res);
 
     boardList.value = res.data.data;
     boardCount.value = res.data.total;
@@ -91,6 +97,7 @@ const addBoards = async function () {
       }
     });
     console.log("res: ", res);
+    await getBoardsList();
   } catch (err) {
     console.log("err: ", err);
   }
@@ -107,21 +114,21 @@ const editBoard = async function (id: Number, name: String) {
       }
     });
     console.log("res: ", res);
+
   } catch (err) {
     console.log("err: ", err);
   }
 };
 
-const delBoard = async function () {
+const delBoard = async function (id) {
   try {
     const res = await axios({
-      method: "POST",
-      url: "/api/kanban-boards",
-      params: {
-        name: userInput.value,
-      }
+      method: "DELETE",
+      url: `/api/kanban-boards/${id}`,
     });
-    console.log("res: ", res);
+    // console.log("res: ", res);
+    await getBoardsList();
+
   } catch (err) {
     console.log("err: ", err);
   }
