@@ -9,7 +9,7 @@
             Welcome to Kanban
           </div>
 
-          <h2>開始使用！</h2>
+          <h2 style="font-weight: 300;">開始使用！</h2>
 
           <div class="text-center">
             <a href="/auth">

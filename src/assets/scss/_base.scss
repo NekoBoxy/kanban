@@ -6,31 +6,54 @@
 
 
 *{
-  color: black;
-}
-
-a{
-  text-decoration: none;
-  color: black;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body{
-  position: relative;
+  // position: relative;
   background-image: url('@/assets/images/bg.png');
   background-repeat: no-repeat;
   font-family: "Noto Sans TC", sans-serif;
-  font-weight: 300;
-  // font-size: 1rem;
+  font-weight: 400;
+  color: black;
+  font-size: 1rem;
   // background-size: cover;
 
   // filter: blur(3.5px);
   // filter: brightness(0.75); // 會蓋到文字顏色
 }
 
-button{
-  font-weight: 300
+a, span {
+  line-height: 1.6;
 }
 
-main{
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  font-size: 0.85rem;
+  font-weight: 200;
+  // line-height: 1rem;
+  padding: 0.2rem;
+
+  &:hover{
+    background-color: #bbbbbb;
+  }
+}
+
+input, input:focus {
+  outline: none;
+}
+
+main {
   margin-top: 4rem;
 }
