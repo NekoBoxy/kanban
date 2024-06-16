@@ -1,46 +1,59 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 const props = defineProps({
-  cols: Object,
+  status: String,
   data: Object,
-  status: String
 });
 
 const emits = defineEmits([
-  "emitSubmit",
-  "editBoard"
+  // "emitsCreate",
+  // "emitsEdit",
+  // "emitsDel",
+  "onEdit",
 ]);
 
 const isVisible = ref(false);
 const isOut = ref(false);
-const results = ref({});
+const results = ref("");
 const timer = ref(null);
 
-const handleSubmit = function () {
-  // console.log("props.cols: ", props.cols);
-  // console.log("results: ", results);
+results.value = props.data?.name;
+
+// const computedInput = computed({
+//   get() {
+//     return props.data.name;
+//   },
+//   set(newValue) {
+//     console.log("newValue: ", newValue);
+//     results.value = newValue;
+//   }
+// });
+
+const handleConfirm = function () {
+  console.log("子層")
 
   isOut.value = true;
-  emits("emitSubmit", results.value)
-  setTimeout(() => {
+  emits("onEdit", { id: props.data.id, title: results.value });
+  timer.value = setTimeout(() => {
     isVisible.value = false;
   }, 300)
 };
 
-// 動畫說明
-// 若統一用 isVisible 來羫的話，離開的特效會因為 isVisible false 先關掉全部而出不來
-// 故分兩階段控
+
+// // 動畫說明
+// // 若統一用 isVisible 來羫的話，離開的特效會因為 isVisible false 先關掉全部而出不來
+// // 故分兩階段控
 const handleCancel = function () {
   isOut.value = true;
-  setTimeout(() => {
+  timer.value = setTimeout(() => {
     isVisible.value = false;
   }, 300)
 };
 
 onMounted(async () => {
   clearTimeout(timer.value);
-  console.log("props: ", props);
-
+  // console.log("props.status: ", props.status);
+  // console.log("props.data: ", props.data);
 
 });
 </script>
@@ -52,50 +65,24 @@ onMounted(async () => {
 
 
   <teleport to="body">
-    <div v-if="isVisible" class="container modal-mask">
-      <!-- 針對可列舉(具 key-value pair)的 cols，找出每個 col 的 key  -->
-      <!-- 例：cols 若是 { title: '請輸入姓名', notice: '只接受中文' } -->
-      <!-- 那 Object.keys(props.cols) 的 v-for 的 col 就會迴圈列出每個 col 的 key -->
-      <div class="row modal-container" :class="{ 'fade-in': isVisible === true, 'fade-out': isOut === true }"
-        v-for="(col, index) in Object.keys(props.cols)" :key="index">
+    <div v-if="isVisible && props.status === 'edit'" class="container modal-mask">
+      <div class="row modal-container" :class="{ 'fade-in': isVisible === true, 'fade-out': isOut === true }">
         <div class="col-12 col-md-6 modal-box">
           <p>
-            {{ props.cols[col] }}
+            編輯標題
           </p>
-
-          <input type="text" v-model="results[index]" class="w-100" />
+          <input type="text" v-model="results" class="w-100" />
         </div>
 
         <div class="col-12 col-md-6" style="display: flex; justify-content: center;">
-          <button class="offset-1 col-5" type="button" @click="handleSubmit">確認</button>
+          <button class="offset-1 col-5" type="button" @click="handleConfirm">確認</button>
           <button class="col-5" type="button" @click="handleCancel">取消</button>
         </div>
 
       </div>
+
     </div>
 
-
-    <!-- <div v-if="isVisible && props.data" class="container modal-mask">
-      <div class="row modal-container" :class="{ 'fade-in': isVisible === true, 'fade-out': isOut === true }"
-        v-for="(item, index) in Object.keys(props.data)" :key="index">
-        {{ item.name }}
-
-        <div class="col-12 col-md-6 modal-box">
-        {{ item }}
-        <p>
-            {{ props.cols[col] }}
-          </p>
-
-          <input type="text" v-model="results[index]" class="w-100" />
-        </div>
-
-        <div class="col-12 col-md-6" style="display: flex; justify-content: center;">
-          <button class="offset-1 col-5" type="button" @click="handleSubmit">確認</button>
-          <button class="col-5" type="button" @click="handleCancel">取消</button>
-        </div>
-
-      </div>
-    </div> -->
 
   </teleport>
 </template>
