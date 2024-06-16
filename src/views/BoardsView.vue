@@ -6,15 +6,28 @@
           <span style="display: flex; align-items: center;">
             目前有 {{ boardCount }} 張 Kanbans
           </span>
-          <CModal :cols="kanbanTitleAdd" @emit-submit="addNewKanban">
+          <CModal :cols="kanbanTitleAdd" @emit-submit="createKanban">
             新增
           </CModal>
         </div>
 
         <div class="col-12 mb-2" style="margin: 0 auto;">
           Kanbans List
+          <div v-for="item in boardList " :key="item.id" class="mb-2">
+            <CModal :cols="kanbanTitleEdit" :data="item" @emit-submit="editBoard">
+              <!-- <RouterLink :to="`/board/${item.id}`">
+                {{ item.name }}
+              </RouterLink>
+              ｜
+              <button type="button" @click="editBoard(item.id, item.name)">編輯</button>
+              ｜
+              <button type="button" @click="delBoard(item.id)">刪除</button> -->
+            </CModal>
+          </div>
+
+
           <!-- ori -->
-          <div v-for=" item in boardList " :key="item.id" class="mb-2">
+          <!-- <div v-for=" item in boardList " :key="item.id" class="mb-2">
             <RouterLink :to="`/board/${item.id}`">
               {{ item.name }}
             </RouterLink>
@@ -22,7 +35,7 @@
             <button type="button" @click="editBoard(item.id, item.name)">編輯</button>
             ｜
             <button type="button" @click="delBoard(item.id)">刪除</button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -40,6 +53,9 @@ const boardCount = ref(0);
 const kanbanTitleAdd = ref({
   title: "設定 Kanban 名稱",
 });
+const kanbanTitleEdit = ref({
+  title: "修改 Kanban 名稱",
+});
 
 // const emitGet = ref([]);
 // boardList[0]
@@ -51,7 +67,7 @@ const kanbanTitleAdd = ref({
 // }
 
 // 處理 CModal 的資料
-const addNewKanban = async function (emitsEvent) {
+const createKanban = async function (emitsEvent) {
   // console.log("emitsEvent[0]: ", emitsEvent[0]);
 
   // emitGet.value = emitsEvent[0];
@@ -106,6 +122,8 @@ const getBoardsList = async function () {
 
 
 const editBoard = async function (id: Number, name: String) {
+  console.log("id, name: ", id, name);
+
   try {
     const res = await axios({
       method: "patch",

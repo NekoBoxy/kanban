@@ -41,4 +41,15 @@ onMounted(async () => {
   background-color: #FFFFFF75;
   backdrop-filter: blur(2px);
 }
+
+a {
+  line-height: 1.6;
+
+  &:hover {
+    border-radius: 12px;
+    background-color: rgb(168, 164, 164);
+    padding: 0.45rem;
+    color: whitesmoke;
+  }
+}
 </style>

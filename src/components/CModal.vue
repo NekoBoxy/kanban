@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue";
 const props = defineProps({
   cols: Object,
-  data: Array,
+  data: Object,
   status: String
 });
 
